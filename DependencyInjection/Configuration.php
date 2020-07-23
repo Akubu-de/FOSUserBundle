@@ -31,12 +31,11 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fos_user');
+        $treeBuilder = new TreeBuilder('fos_user');
 
         $supportedDrivers = array('orm', 'mongodb', 'couchdb', 'custom');
 
-        $rootNode
+        $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode('db_driver')
                     ->validate()
@@ -76,12 +75,12 @@ class Configuration implements ConfigurationInterface
                 ->thenInvalid('You need to specify your own group manager service when using the "custom" driver.')
             ->end();
 
-        $this->addProfileSection($rootNode);
-        $this->addChangePasswordSection($rootNode);
-        $this->addRegistrationSection($rootNode);
-        $this->addResettingSection($rootNode);
-        $this->addServiceSection($rootNode);
-        $this->addGroupSection($rootNode);
+        $this->addProfileSection($treeBuilder->getRootNode());
+        $this->addChangePasswordSection($treeBuilder->getRootNode());
+        $this->addRegistrationSection($treeBuilder->getRootNode());
+        $this->addResettingSection($treeBuilder->getRootNode());
+        $this->addServiceSection($treeBuilder->getRootNode());
+        $this->addGroupSection($treeBuilder->getRootNode());
 
         return $treeBuilder;
     }
