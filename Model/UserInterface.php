@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 /**
  * @internal Only for back compatibility. Remove / merge when dropping support for Symfony 4
  */
-interface FosUserInterface extends \Serializable
+interface FosUserInterface extends \Serializable,EquatableInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
 
@@ -161,6 +161,8 @@ interface FosUserInterface extends \Serializable
     /**
      * Sets the timestamp that the user requested a password reset.
      *
+     * @param null|\DateTime $date
+     *
      * @return static
      */
     public function setPasswordRequestedAt(\DateTime $date = null);
@@ -176,6 +178,8 @@ interface FosUserInterface extends \Serializable
 
     /**
      * Sets the last login time.
+     *
+     * @param \DateTime|null $time
      *
      * @return static
      */
@@ -199,6 +203,8 @@ interface FosUserInterface extends \Serializable
      * Sets the roles of the user.
      *
      * This overwrites any previous roles.
+     *
+     * @param array $roles
      *
      * @return static
      */
