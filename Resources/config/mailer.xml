@@ -10,7 +10,7 @@
     </parameters>
 
     <services>
-        <service id="FOS\UserBundle\Mailer\Mailer" alias="fos_user.mailer.default">
+        <service id="FOS\UserBundle\Mailer\Mailer" alias="fos_user.mailer.default"/>
         <service id="fos_user.mailer.default" class="FOS\UserBundle\Mailer\Mailer" public="false">
             <argument type="service" id="mailer" />
             <argument type="service" id="router" />
